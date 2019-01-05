@@ -34,6 +34,7 @@ void build(){
 				}
 				
 				fail[nxt[i][now]] = nxt[i][f];
+				//also propagate has_str too, which we will need special DS
 			}
 		}
 	}

@@ -27,7 +27,7 @@ int main(){
 		if(str[str_position+1] == text[text_position]){
 			str_position++;
 			if(str_position == str.length()){
-				cout << "match found at position " << text_position-str.length() << endl;
+				cout << "match found at position " << text_position-str.length()+1 << endl;
 			}
 		}
 	}
