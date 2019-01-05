@@ -53,6 +53,8 @@ void apply(int id)
 {
   //fix this later on
   T[id].value = sqrt(T[id].value);
+  
+  //update T[id], but not lhs rhs
 }
 
 void build(int id = 1, int l = 0, int r = n)
