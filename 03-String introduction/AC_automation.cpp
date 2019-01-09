@@ -15,7 +15,7 @@ void insert(int id){
 		nxt[x-'a'][pos] = nodecnt;
 	}
 	
-	has_str[nodecnt] = id;
+	// add str to has_str
 }
 
 void build(){
@@ -30,9 +30,11 @@ void build(){
 			if(nxt[i][now] != 0){
 				int f = fail[now];
 				while(f != 0 && nxt[i][f] == 0){
+					// pick some other children z
 					f = fail[now];
 				}
 				
+				// don't need to check equality with this implementation
 				fail[nxt[i][now]] = nxt[i][f];
 				//also propagate has_str too, which we will need special DS
 			}
