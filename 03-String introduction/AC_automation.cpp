@@ -12,7 +12,7 @@ void insert(int id){
 			nxt[x-'a'][pos] = nodecnt++;
 		}
 		
-		nxt[x-'a'][pos] = nodecnt;
+		pos = nxt[x-'a'][pos];
 	}
 	
 	// add str to has_str
@@ -37,6 +37,7 @@ void build(){
 				// don't need to check equality with this implementation
 				fail[nxt[i][now]] = nxt[i][f];
 				//also propagate has_str too, which we will need special DS
+				q.push(nxt[i][now]);
 			}
 		}
 	}

@@ -3,7 +3,7 @@ int parent[LGN][MAXN]; //parent[0][MAXN] through DFS
 void build(){
 	for(int i = 1; i < LGN; i++){
 		for(int node = 1; node <= n; node++){
-			parent[i][node] = parent[i][parent[i][node]];
+			parent[i][node] = parent[i-1][parent[i-1][node]];
 		}
 	}
 }

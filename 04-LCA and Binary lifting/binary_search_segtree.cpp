@@ -27,7 +27,7 @@ int ask(int v, int id = 1, int l = 0, int r = n)
 }
 
 int general_ask(int x, int v, int id = 1, int l = 0, int r = n){
-	if(x >= r)
+	if(x >= r || T[id] < v)
 	// if invalid segment
 	{
 		return n;
