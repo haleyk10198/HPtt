@@ -1,0 +1,55 @@
+if(count(mid) < k)
+    l = mid;
+else
+    r = mid;
+
+return left
+
+interesting unintersting .... ...     intersting
+^k                              ^mid 
+
+
+_ 0 _ 0 _ _
+
+dp[6][0] = dp[4][1]
+
+FFFF......FFFFFF
+
+0..E O(1)
+F
+
+O(N)
+
+1 11 +1 .. +1 21 * 120
+    ^9*+1     +1 
+
+1 * * * 21
+dp[odd][20] -> min asterisks 1
+dp[even][20] -> 10
+
+dp[* % 18][difference]
+
+for difference = 20 -> min asterisk? 8 > 1 -> return Yes
+
+dp[row_r][last 3 row states]
+
+r-3
+dp[row_r+1][state'] = sum_(state | state -> state')(dp[row_r][state])
+
+1 4 2 3 4  5
+
+dp[n][k]
+K parents
+
+dp[i][k] = max(dp[j < i][k-1]+Or[j, i])
+
+if((1<<b)&Or(j1, i)) -> (1<<b)&Or(j2 < j1, i)
+
+... a[k] .... a[j1] ... a[j2] ... a[j'] a[j'+1] .. a[j2'] .. a[n] a[n+1]
+
+Or(j, i) 
+Unique or values (n' < n+1)
+S={j} contains unique or values Or(j, n)
+S' contains Or(j', n+1)
+
+S U {n+1} contains unique Or(j', n+1)
