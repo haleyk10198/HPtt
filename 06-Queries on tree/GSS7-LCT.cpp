@@ -33,7 +33,6 @@ struct node{
 node T[100010];
 
 inline void reverse(node *x){
-	//..... too naive
 	if(x){
 		x->rev ^= 1;
 		swap(x->lsum, x->rsum);
@@ -118,8 +117,9 @@ void rotate(node* x){
         x->r = y;
     }
      
-    maintain(y), maintain(x);
+    maintain(y), maintain(x), maintain(z);
     //ORDER IS IMPORTANT, ALWAYS UPDATE LOWER NODES FIRST
+    //for z no maintain is ok if sz no change, but not always
     return;
 }
  
@@ -173,11 +173,15 @@ inline void cut(node* x, node* y){
 }
 
 inline bool connected(node *x, node *y){
-	makeroot(x);
-	makeroot(y);
-	return not isroot(x);
-}
+    makeroot(x);
+    access(y);
+    splay(x);
 
+    node *t = y;
+    while(t->par) t = t->par;
+
+    return t == x;
+}
 int n, m;
 
 int main(){

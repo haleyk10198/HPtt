@@ -151,12 +151,16 @@ inline void cut(Node* x, Node* y){
     return;
 }
 
-inline bool connected(Node *x, Node *y){
+inline bool connected(node *x, node *y){
     makeroot(x);
-    makeroot(y);
-    return not isroot(x);
-}
+    access(y);
+    splay(x);
 
+    node *t = y;
+    while(t->par) t = t->par;
+
+    return t == x;
+}
 int n, m, a[200010];
 
 int main(){
