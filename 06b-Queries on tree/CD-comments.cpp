@@ -50,6 +50,7 @@ void pickCen(int now, int prv, int tot = -1){
 	// the maximum component is either the children or the tree excluding self
 	if(mx < mib){
 		// if it breaks the tree best
+		// min max |component|
 		mib = mx;
 		center = now;
 	}
