@@ -35,9 +35,9 @@ void build(){
 }
 
 int ask(int x, int y){
-	if(en[x] > en[y]) swap(en[x], en[y]);
+	if(en[x] > en[y]) swap(x, y);
 	x = en[x]; y = ed[y];
-	int h = sizeof(int)*8 - __builtin_clz(y-x) + 1;
+	int h = sizeof(int)*8 - __builtin_clz(y-x) + 1; // lg2(y-x)
 	int u = tab[h][x];
 	int v = tab[h][y-(1<<h)];
 	

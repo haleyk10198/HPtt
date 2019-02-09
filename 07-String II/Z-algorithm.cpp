@@ -28,4 +28,6 @@ vi match(string pattern, string text){
 			match_position.push_back(i);
 		}
 	}
+	
+	return match_position;
 }
