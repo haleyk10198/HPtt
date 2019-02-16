@@ -48,7 +48,7 @@ void constructSA(string str){
 				}
 			}
 			for( ; x < y; x++){
-				tab[i][x] = rank;
+				tab[i][SA[x]] = rank;
 			}
 		}
 	}
