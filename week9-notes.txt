@@ -1,0 +1,48 @@
+
+sum_(i from 0 to n/2*9)(ways[i]*ways[i])
+
+for(int digits = 0; digits < n/2; digits++){
+    for(int sum = 0; sum <= 9*digits/2; sum++){
+        for(int k = 0; k < 10; k++){
+            ways[digits+1][sum+k] += ways[digits][sum];
+        }
+    }
+}
+
+N*N
+O(lg N) multiplication
+O(N^3 lg N)
+
+x^0 * 0 + x^1 * 1 ...
+
+dp[1] = 0100000010
+dp[2] = dp[1]*dp[1], x^16 + 2*x^9 + x^2
+dp[3] = dp[2]*dp[1], (x^16 + 2*x^9 + x^2)*(x^8 + x^1) = x^24 + 3*x^17 + ...
+
+ll dp[], b[];
+
+ll* mult(ll *f, ll *g, int LEN){
+    ll *fg = new ll[LEN];
+    for(int i = 0; i < LEN; i++)
+        fg[i] = f[i]*g[i]; 
+    return fg;
+}
+
+void pwr(ll e){
+    // special case
+    
+    if(e%2 == 1)
+        dp *= b;
+    
+    pwr(mult(b, b, LEN), e/2);
+}
+
+z1 must be first place
+z2 must be last place
+
+for all other teams X
+
+z2win <= Xwin <= z1win
+
+check Xwin <= z1win
+check z2win <= Xwin
