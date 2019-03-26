@@ -11,7 +11,7 @@ int pseg::t = 0, n, q, root[200010];
 void upd(int &pos, int ref, int val, int l = 0+1, int r = n+1){
 	pos = ++pseg::t;
 	T[pos] = T[ref];
-	T[pos].x++;
+	T[pos].x++; // TODO: modify value
 	if(l+1 == r)
 		return;
 	int mid = (l+r)/2;
