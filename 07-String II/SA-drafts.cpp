@@ -98,7 +98,7 @@ void constructSA(string str){
   	for(int i = 0; i < n; i++){
       	SA[i] = i;
     }
-  	sort(SA, SA+n, 0);
+  	sort(SA, SA+n);
   
 //   	for(int len = 2, i = 1; len <= n; len*=2, i++){
 //       	sort(SA, SA+n, [&len](int x, int y){

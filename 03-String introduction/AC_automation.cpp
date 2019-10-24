@@ -20,7 +20,11 @@ void insert(int id){
 
 void build(){
 	queue<int> q;
-	queue.push(0);
+	for(int i = 0; i < 26; i++){
+		if(nxt[i][0] != 0){
+			q.push(nxt[i][0]);
+		}
+	}
 	
 	while(not q.empty()){
 		int now = q.front();

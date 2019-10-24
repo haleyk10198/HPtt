@@ -38,7 +38,7 @@ void constructSA(string str){
 	
 	for(int i = 1, step = 1; step < n; i++, step<<=1){
 		counting_sort(i-1, step);
-		couting_sort(i-1, 0);
+		counting_sort(i-1, 0);
 		
 		for(int x = 0, y = 0, rank = 0; x < n; x=y, rank++){
 			// same thing as the double lg demo
@@ -54,7 +54,7 @@ void constructSA(string str){
 	}
 }
 
-void invert[MAXN]; // from string id to id in SA
+int invert[MAXN]; // from string id to id in SA
 int LCP[MAXN], PLCP[MAXN];
 
 void constructLCP(string str){
