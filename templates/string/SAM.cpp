@@ -1,15 +1,19 @@
 struct state {
-    int len, link;
+    int len, link; // #char, par
     int clone, cnt; // optional
     map<char, int> next; // at most 3n-4 fwd links in total
-} st[MAXNLEN<<1]; // at most 2n-1 states
+} st[MAXLEN<<1]; // at most 2n-1 states
 
 int sz, last;
 
 void sa_init() {
     st[0].len = 0;
     st[0].link = -1;
-    sz++;
+    for(int i = 0; i < sz; i++) {
+        st[i].clone = st[i].cnt = 0;
+        st[i].next.clear();
+    }
+    sz = 1;
     last = 0;
     // reset next and optional fields!
 }
