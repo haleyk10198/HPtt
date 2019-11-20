@@ -6,7 +6,13 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Jeffrey/CLionProjects/HPtt/training/20-Nov-2019/main.cpp
+C:/Users/haleyk/Documents/GitHub/HPtt/training/20-Nov-2019/main.cpp
 bits/stdc++.h
+-
+ext/pb_ds/assoc_container.hpp
+-
+ext/pb_ds/tree_policy.hpp
+-
+ext/pb_ds/detail/standard_policies.hpp
 -
 
