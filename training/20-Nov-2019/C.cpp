@@ -1,54 +1,11 @@
-/* Author haleyk10198 */
-/* §@ªÌ:  haleyk10198 */
-/* CF handle: haleyk100198*/
-/* FOR ACM-ICPC WF*/
 #include <bits/stdc++.h>
 
 using namespace std;
-using ll = long long;
+
 using vi = vector<int>;
-using vvi = vector<vi>;
 using pii = pair<int, int>;
 
-#define pb push_back
-
-constexpr auto MOD = 1000000007LL;
-constexpr auto LINF = (1LL << 60);
-constexpr auto INF = 2147483647LL;
-constexpr auto PI = 3.1415926535897932384626433;
-constexpr auto EPS = 1E-9;
-
-template<typename T1, typename T2>
-ostream &operator<<(ostream &out, const pair<T1, T2> p) {
-    out << p.first << ' ' << p.second;
-    return out;
-}
-
-template<typename T1, typename T2>
-istream &operator>>(istream &in, pair<T1, T2> &p) {
-    in >> p.first >> p.second;
-    return in;
-}
-
-template<typename T>
-istream &operator>>(istream &in, vector<T> &v) {
-    for (auto &x: v)
-        in >> x;
-    return in;
-}
-
-template<typename T>
-ostream &operator<<(ostream &out, vector<T> v) {
-    for (int i = 0; i < v.size(); i++)
-        out << v[i] << (i + 1 == v.size() ? '\n' : ' ');
-    out.flush();
-    return out;
-}
-
-#if __cplusplus < 201703L
-#define mp make_pair
-#endif
-
+#define MOD 1000000007
 #define MAXN 1000010
 
 int n, m, q;
@@ -67,13 +24,18 @@ void addEdge(int x, int y) {
     reList[y].push_back(x);
 }
 
+int en[MAXN], ed[MAXN], dfsTime;
+int sccEn[MAXN], sccEd[MAXN];
+
 void DFS(int x) {
     visited[x] = true;
+    en[x] = dfsTime++;
     for(auto v: eList[x]) {
         if(not visited[v]) {
             DFS(v);
         }
     }
+    ed[x] = dfsTime;
 
     vList.push_back(x);
 }
@@ -109,13 +71,9 @@ int findSCC() {
     return nSCC;
 }
 
-int resolved[MAXN];
-
 int main() {
 #ifdef LOCAL
-    freopen("../input.txt", "r", stdin);
-//		freopen("output.txt","w",stdout);
-    freopen("../debug.txt", "w", stderr);
+    freopen("input.txt", "r", stdin);
 #endif
     ios_base::sync_with_stdio(false);
 
@@ -125,7 +83,7 @@ int main() {
     map<char, pii> dirs;
     dirs['U'] = pair(-1, 0);
     dirs['D'] = pair(1, 0);
-    dirs['L'] = pair(-1, 0);
+    dirs['L'] = pair(0, -1);
     dirs['R'] = pair(0, 1);
 
     for(int i = 0; i < n; i++) {
@@ -142,21 +100,23 @@ int main() {
     }
 
     findSCC();
-    for(int i = n*m-1; i >= 0; i--) {
-        int from = vList[i];
-        from = sccId[from];
-        set<int> reach;
-        if(resolved[from]) continue;
-        for(auto to: eList[from]) {
-            if(sccId[to] != from) {
-                reach.insert(sccId[to]);
-                sz[from] += sz[sccId]
-            }
-        }
+    fill(sccEn, sccEn+MAXN, MOD);
 
+    for(int i = 0; i < n*m; i++) {
+        sccEn[sccId[i]] = min(sccEn[sccId[i]], en[i]);
+        sccEd[sccId[i]] = max(sccEd[sccId[i]], ed[i]);
     }
-    for(int from = 0; from < n * m; from++) {
 
+    for(int i = 0, x1, x2, y1, y2, from, to; i < q; i++) {
+        cin >> x1 >> y1 >> x2 >> y2; --x1, --x2, --y1, --y2;
+        from = flattenIdx(x1, y1);
+        to = flattenIdx(x2, y2);
+        from = sccId[from];
+        to = sccId[to];
+
+        if(en[from] <= en[to] && ed[from] >= ed[to]) {
+            cout << sccEd[sccId[from]]-sccEn[sccId[to]] << endl;
+        } else cout << 0 << endl;
     }
 
     return 0;
