@@ -1,3 +1,3 @@
-C:/Users/haleyk/Documents/GitHub/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/20_Nov_2019.dir
-C:/Users/haleyk/Documents/GitHub/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/haleyk/Documents/GitHub/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Jeffrey/CLionProjects/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/20_Nov_2019.dir
+C:/Users/Jeffrey/CLionProjects/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Jeffrey/CLionProjects/HPtt/training/20-Nov-2019/cmake-build-debug/CMakeFiles/rebuild_cache.dir

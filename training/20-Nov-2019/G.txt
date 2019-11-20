@@ -11,7 +11,10 @@ vector<pii> e[100005];
 vector<int> r[100005];
 
 int vis1[100005];
+int vis2[100005];
 vector<int> ans;
+
+bool bad = 0;
 
 void dfs1(int v) {
     vis1[v] = 1;
@@ -21,11 +24,16 @@ void dfs1(int v) {
 }
 
 void dfs2(int v) {
+	vis2[v] = 1;
     if (ans.size() > 1000006) return;
     if (v == t) return;
+    if (bad) return;
 
     for (auto op : e[v]) {
         if (vis1[op.se]) {
+        	if (vis2[op.se]) {
+        		bad = 1; return;
+			}
             ans.push_back(op.fi);
             dfs2(op.se);
             return;
@@ -34,10 +42,10 @@ void dfs2(int v) {
 }
 
 int main() {
-#ifdef LOCAL
-    freopen("input.txt", "r", stdin);
-#endif
-    ios_base::sync_with_stdio(false);
+//#ifdef LOCAL
+//    freopen("input.txt", "r", stdin);
+//#endif
+//    ios_base::sync_with_stdio(false);
 
     cin >> n >> m >> s >> t;
     for (int i = 0; i < m; i++) {
@@ -54,7 +62,7 @@ int main() {
     if (not vis1[s]) cout << "IMPOSSIBLE\n";
     else {
         dfs2(s);
-        if (ans.size() > 1000000) cout << "TOO LONG\n";
+        if (ans.size() > 1000000 or bad) cout << "TOO LONG\n";
         else {
             for (int i = 0; i < ans.size(); i++) {
                 cout << ans[i] << (i + 1 == ans.size() ? '\n' : ' ');
