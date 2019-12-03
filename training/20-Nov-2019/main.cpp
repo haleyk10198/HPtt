@@ -69,14 +69,16 @@ void solve(int u, int v, OT &out) {
     for(int i = 0; i < children.size(); i++) {
         if(i != idx) {
             auto it = out.begin();
-            for(int j = 0; j+1 < children[i].size(); j++) it++;
-            for(auto pit = it, oit = --children[i].end(); ; --oit, it = pit) {
-                if(it != out.begin()) --pit;
+            int toBreak = false;
+            for(int j = 0; j < children[i].size(); j++) it++;
+            vector<pair<ll, pii>> toInsert;
+            for(auto it = out.begin(), oit = children[i].begin(); !children[i].empty(); it = out.begin(), oit = children[i].begin()) {
                 ll vv = it->first+oit->first;
                 out.erase(it);
-                out.insert(pair(vv, oit->second));
-                if(oit == children[i].begin()) break;
+                children[i].erase(oit);
+                toInsert.emplace_back(pair(vv, oit->second));
             }
+            for(auto x: toInsert) out.insert(x);
         }
     }
 
