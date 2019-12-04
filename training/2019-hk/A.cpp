@@ -29,6 +29,22 @@ public:
         os << line.x << " " << line.y << " " << line.c;
         return os;
     }
+
+    bool operator<(const Line &rhs) const {
+        return std::tie(x, y, c) < std::tie(rhs.x, rhs.y, rhs.c);
+    }
+
+    bool operator>(const Line &rhs) const {
+        return rhs < *this;
+    }
+
+    bool operator<=(const Line &rhs) const {
+        return !(rhs < *this);
+    }
+
+    bool operator>=(const Line &rhs) const {
+        return !(*this < rhs);
+    }
 };
 
 map<int, OT> cols, rows;
@@ -280,6 +296,7 @@ int main() {
             res.emplace_back(Line(2, -2, YXMID));
         }
 
+        sort(res.begin(), res.end(), greater<>());
         cout << res.size () << endl
              << res << endl;
     }
