@@ -175,7 +175,7 @@ int k, n, par[MAXN], a[MAXN], dp[MAXN];
 
 int main() {
 #ifdef LOCAL
-    freopen("H.txt", "r", stdin);
+    freopen("G.txt", "r", stdin);
 #endif
 
     ios_base::sync_with_stdio(false);
