@@ -1,0 +1,3 @@
+C:/Users/haleyk/Documents/GitHub/HPtt/training/2019-hk/cmake-build-debug/CMakeFiles/2019_hk.dir
+C:/Users/haleyk/Documents/GitHub/HPtt/training/2019-hk/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/haleyk/Documents/GitHub/HPtt/training/2019-hk/cmake-build-debug/CMakeFiles/rebuild_cache.dir

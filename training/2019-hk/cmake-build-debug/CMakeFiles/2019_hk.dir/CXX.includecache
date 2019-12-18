@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/haleyk/Documents/GitHub/HPtt/training/2019-hk/main.cpp
+bits/stdc++.h
+-
+ext/pb_ds/assoc_container.hpp
+-
+ext/pb_ds/tree_policy.hpp
+-
+ostream
+-
+

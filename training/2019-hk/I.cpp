@@ -170,6 +170,7 @@ void split(Node *T, const int &val, Node* &L, Node* &R) {
 
 void insert(Node* &T, Node *n) {
     Node *L, *R;
+    n->par = nullptr;
     split(T, n->val, L, R);
     merge(T, L, n);
     merge(T, T, R);
@@ -193,7 +194,8 @@ void extractCandidates(const Node *T, vi &candidates) {
 }
 
 void extractSelf(Node *T, const int grp) {
-    if(T->par == nullptr) {
+	if(!T) return;
+    else if(T->par == nullptr) {
         merge(roots[grp], T->l, T->r);
     } else {
         merge(T->par->l == T? T->par->l: T->par->r, T->l, T->r);
@@ -223,31 +225,37 @@ int main() {
             int x, y; cin >> x >> y;
             x ^= last; y ^= last;
 
-            ::apply(roots[x], -y);
-            split(roots[x], 1, L, R);
-            roots[x] = R;
-
             vi candidates, tp;
-            extractCandidates(L, candidates);
+            
+			if(roots[x]) {
+	            ::apply(roots[x], -y);
+	            split(roots[x], 1, L, R);
+	            roots[x] = R;
+	
+	            extractCandidates(L, candidates);
+	
+	            for(const int &idx: candidates) {
+	                ll dv = 0;
+	                for(int j = 0; j < sz[idx]; j++) {
+	                    extractSelf(T[idx] + j, members[idx][j]);
+	                    dv += T[idx][j].endured;
+	                }
+	
+	                if((vals[idx] += dv) <= 0) {
+	                    tp.emplace_back(idx);
+	                } else {
+	                    for(int j = 0; j < sz[idx]; j++) {
+	                        T[idx][j].setAlarm((vals[idx]+sz[idx]-1)/sz[idx]);
+	                        insert(roots[members[idx][j]], T[idx] + j);
+	                    }
+	                }
+            	}
+				
+			}
 
-            for(const int &idx: candidates) {
-                ll dv = 0;
-                for(int j = 0; j < sz[idx]; j++) {
-                    extractSelf(T[idx] + j, members[idx][j]);
-                    dv += T[idx][j].endured;
-                }
-
-                if((vals[idx] += dv) <= 0) {
-                    tp.emplace_back(idx);
-                } else {
-                    for(int j = 0; j < sz[idx]; j++) {
-                        T[idx][j].setAlarm((vals[idx]+sz[idx]-1)/sz[idx]);
-                        insert(roots[members[idx][j]], T[idx] + j);
-                    }
-                }
-            }
-
-            cout << tp.size() << ' ' << tp << endl;
+			// dude it's size_vector, the checker should accept "0 [empty vector]"
+			if(tp.empty()) cout << 0 << endl;
+            else cout << tp.size() << ' ' << tp << endl;
         }
     }
 
